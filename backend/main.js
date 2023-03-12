@@ -1,8 +1,10 @@
 import MacDB from "./macdb.js"
+import Webserver from "./webserver.js";
 
-function main() {
+async function main() {
     let db = new MacDB();
-    db.loadFromFile('oui.csv')
+    await db.loadFromFile('oui.csv')
+    let webserver = new Webserver(db);
+    webserver.start();
 }
-
-main()
+await main()
