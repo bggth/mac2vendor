@@ -1,0 +1,28 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}    
+
+.header-logo-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+    display: flex;
+    flex-direction: column;   
+    gap: 20px;
+}
+
+.main-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+}
+
+.lookup{
+    min-height: 30px;
+}

@@ -1,4 +1,6 @@
 import * as http from 'http'
+import * as fs from 'fs'
+import * as path from 'path'
 
 export default class Webserver {
 	constructor(db) {
@@ -11,6 +13,7 @@ export default class Webserver {
 		this.server = http.createServer((req, res) => {
 			let statusCode = 404;
 			let resultData = '404\n';
+			let __dirname = path.resolve();
 			if (req.method == 'POST') {
 
 				let body = '';
@@ -40,17 +43,24 @@ export default class Webserver {
 					}
 				})
 			} else if(req.method == 'GET') {
-				let whiteListUrls = ['/', 'index.html', 'styles.css', 'main.js'];
+				let whiteListUrls = ['/', '/index.html', '/styles.css', '/main.js'];
+				console.log(req.url, __dirname + '/static' + req.url)
 				if (whiteListUrls.includes(req.url)) {
 					let fileName = req.url;
 					if (req.url == '/') 
 						fileName = '/index.html';	
 	
-					fs.readFile(__dirname + fileName, (err, data) => {
+					fs.readFile(__dirname + '/static' + fileName, (err, data) => {
+						console.log(data)
 						if (err) {
-
+							console.log('err', err)
 						} else {
+							console.log(data)
 							statusCode = 200;
+							resultData = data;
+							res.statusCode = statusCode;
+							//res.setHeader('Content-Type', 'text/html');
+							res.end(resultData);
 						}
 					});
 
