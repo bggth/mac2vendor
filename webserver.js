@@ -5,7 +5,7 @@ import * as path from 'path'
 export default class Webserver {
 	constructor(db) {
 		this.host = '0.0.0.0';
-		this.port = 3000;
+		this.port = 80;
 		this.db = db;
 	}
 
